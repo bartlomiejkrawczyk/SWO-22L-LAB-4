@@ -10,7 +10,7 @@ class WhiteBear;
 
 class WhiteBear {
    public:
-    void printItems();
+    void printItems(std::ostream&);
     void addItem(IItem* item);
     void updateQuality();
 

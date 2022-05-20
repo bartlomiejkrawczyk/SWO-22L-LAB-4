@@ -11,6 +11,6 @@ void WhiteBear::updateQuality() {
 
 void WhiteBear::addItem(IItem* item) { items_.emplace_back(item); }
 
-void WhiteBear::printItems() {
-    for (auto const& i : items_) std::cout << *i << std::endl;
+void WhiteBear::printItems(std::ostream& sink) {
+    for (auto const& i : items_) sink << *i << std::endl;
 }

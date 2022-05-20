@@ -10,5 +10,5 @@ int main() {
 
     cout << "HAHAHA!" << endl;
     app.updateQuality();
-    app.printItems();
+    app.printItems(cout);
 }
