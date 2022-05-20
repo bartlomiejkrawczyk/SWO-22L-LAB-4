@@ -7,9 +7,9 @@ using ItemPointer = std::shared_ptr<IItem>;
 
 class IItem {
    public:
-    IItem(const std::string& name, int days_remaining, int quality)
+    IItem(const std::string& name, int sell_in, int quality)
         : name_{name},
-          days_remaining_{days_remaining},
+          sell_in_{sell_in},
           quality_{quality},
           max_quality_{50},
           min_quality_{0} {}
@@ -17,13 +17,13 @@ class IItem {
     virtual ~IItem() = default;
 
     int getQuality() const { return quality_; };
-    int getDaysRemaining() const { return days_remaining_; };
+    int getDaysRemaining() const { return sell_in_; };
     const std::string& getName() const { return name_; };
 
     virtual void update() = 0;
 
    protected:
-    void decrementDaysRemaining() { days_remaining_ -= 1; }
+    void decrementSellIn() { sell_in_ -= 1; }
 
     void decrementQualityBy(const int quality_decrement) {
         quality_ = std::max(quality_ - quality_decrement, min_quality_);
@@ -37,7 +37,7 @@ class IItem {
 
    private:
     std::string name_;
-    int days_remaining_;
+    int sell_in_;
     int quality_;
     const int max_quality_;
     const int min_quality_;

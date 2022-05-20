@@ -12,6 +12,6 @@ class NormalItem : public IItem {
         const int quality_decrement = (getDaysRemaining() <= 0) ? 2 : 1;
 
         decrementQualityBy(quality_decrement);
-        decrementDaysRemaining();
+        decrementSellIn();
     };
 };
