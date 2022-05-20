@@ -6,8 +6,6 @@
 
 #include "IItem.h"
 
-class WhiteBear;
-
 class WhiteBear {
    public:
     void printItems(std::ostream&);
