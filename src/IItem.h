@@ -18,7 +18,7 @@ class IItem {
 
     int getQuality() const { return quality_; };
     int getDaysRemaining() const { return days_remaining_; };
-    std::string getName() const { return name_; };
+    const std::string& getName() const { return name_; };
 
     virtual void update() = 0;
 
