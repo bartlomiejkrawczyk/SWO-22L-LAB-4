@@ -1,5 +1,4 @@
-#ifndef WHITE_BEAR_H
-#define WHITE_BEAR_H
+#pragma once
 #include <iostream>
 #include <string>
 #include <vector>
@@ -33,4 +32,3 @@ class WhiteBear {
 const std::string item1 = "Aged Cheese";
 const std::string item2 = "Tickets to a concert";
 const std::string item3 = "Legolas, Hand of Gollum";
-#endif  // WHITE_BEAR_H

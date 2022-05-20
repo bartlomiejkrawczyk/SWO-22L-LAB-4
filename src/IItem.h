@@ -1,5 +1,4 @@
-#ifndef CPP_IITEM_H
-#define CPP_IITEM_H
+#pragma once
 #include <memory>
 #include <string>
 
@@ -43,5 +42,3 @@ class IItem {
     const int max_quality_;
     const int min_quality_;
 };
-
-#endif  // CPP_IITEM_H

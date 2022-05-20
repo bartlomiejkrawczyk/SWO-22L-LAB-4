@@ -1,5 +1,4 @@
-#ifndef CPP_ConcertTicketItem_H
-#define CPP_ConcertTicketItem_H
+#pragma once
 
 #include "IItem.h"
 
@@ -32,5 +31,3 @@ class ConcertTicketItem : public IItem {
         return quality_increment;
     };
 };
-
-#endif  // CPP_ConcertTicketItem_H

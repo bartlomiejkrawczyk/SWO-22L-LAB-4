@@ -1,5 +1,4 @@
-#ifndef CPP_NORMALITEM_H
-#define CPP_NORMALITEM_H
+#pragma once
 
 #include "IItem.h"
 
@@ -16,5 +15,3 @@ class NormalItem : public IItem {
         decreaseDaysRemaining();
     };
 };
-
-#endif  // CPP_NORMALITEM_H
