@@ -12,6 +12,6 @@ class CheeseItem : public IItem {
         const int quality_increment = (getDaysRemaining() <= 0) ? 2 : 1;
 
         incrementQualityBy(quality_increment);
-        decreaseDaysRemaining();
+        decrementDaysRemaining();
     }
 };

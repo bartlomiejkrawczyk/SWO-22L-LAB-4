@@ -16,7 +16,7 @@ class ConcertTicketItem : public IItem {
             incrementQualityBy(quality_increment);
         }
 
-        decreaseDaysRemaining();
+        decrementDaysRemaining();
     };
 
    private:

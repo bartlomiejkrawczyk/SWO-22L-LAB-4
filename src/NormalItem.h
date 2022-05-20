@@ -11,7 +11,7 @@ class NormalItem : public IItem {
     void update() override {
         const int quality_decrement = (getDaysRemaining() <= 0) ? 2 : 1;
 
-        decreaseQualityBy(quality_decrement);
-        decreaseDaysRemaining();
+        decrementQualityBy(quality_decrement);
+        decrementDaysRemaining();
     };
 };

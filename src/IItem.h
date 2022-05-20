@@ -23,9 +23,9 @@ class IItem {
     virtual void update() = 0;
 
    protected:
-    void decreaseDaysRemaining() { days_remaining_ -= 1; }
+    void decrementDaysRemaining() { days_remaining_ -= 1; }
 
-    void decreaseQualityBy(const int quality_decrement) {
+    void decrementQualityBy(const int quality_decrement) {
         quality_ = std::max(quality_ - quality_decrement, min_quality_);
     }
 
