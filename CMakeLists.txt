@@ -24,16 +24,17 @@ set(CMAKE_THREAD_LIBS_INIT pthread)
 # Source files
 
 set(WHITE_BEAR_SOURCE_FILES
-    WhiteBear.cc
-    WhiteBear.h)
+    src/WhiteBear.cc
+    src/WhiteBear.h)
 
 set(WHITE_BEAR_UNIT_TESTS_SOURCE_FILES
     ${WHITE_BEAR_SOURCE_FILES}
-    WhiteBearUnitTests.cc)
+    # tests/WhiteBearCharacterizationTests.cc
+    tests/WhiteBearUnitTests.cc)
 
 set(WHITE_BEAR_MAIN_SOURCE_FILES
     ${WHITE_BEAR_SOURCE_FILES}
-    WhiteBearMain.cc)
+    src/WhiteBearMain.cc)
 
 # Add the main executable
 
@@ -44,5 +45,6 @@ add_executable(WhiteBear ${WHITE_BEAR_MAIN_SOURCE_FILES})
 enable_testing()
 include(GoogleTest)
 add_executable(WhiteBearUnitTests ${WHITE_BEAR_UNIT_TESTS_SOURCE_FILES})
+target_include_directories(WhiteBearUnitTests PRIVATE src/)
 target_link_libraries(WhiteBearUnitTests gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
 gtest_discover_tests(WhiteBearUnitTests)
