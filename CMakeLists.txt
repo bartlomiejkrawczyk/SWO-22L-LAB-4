@@ -61,3 +61,5 @@ add_executable(WhiteBearCharacterizationTests ${WHITE_BEAR_CHARACHTERIZATION_TES
 target_include_directories(WhiteBearCharacterizationTests PRIVATE src/)
 target_link_libraries(WhiteBearCharacterizationTests gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
 gtest_discover_tests(WhiteBearCharacterizationTests)
+
+configure_file(ExpectedTestOutput.txt ExpectedTestOutput.txt COPYONLY)
