@@ -2,8 +2,4 @@
 
 #include "WhiteBear.h"
 
-TEST(WhiteBearTest, Foo) {
-
-  EXPECT_TRUE(true);
-}
-
+TEST(WhiteBearTest, Foo) { EXPECT_TRUE(true); }

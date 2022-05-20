@@ -3,19 +3,16 @@
 
 #include "IItem.h"
 
-class ConcertTicketItem : public IItem{
-public:
-    ConcertTicketItem(const std::string &name, int days_remaining, int quality) : IItem(name, days_remaining, quality) {}
+class ConcertTicketItem : public IItem {
+   public:
+    ConcertTicketItem(const std::string &name, int days_remaining, int quality)
+        : IItem(name, days_remaining, quality) {}
     virtual ~ConcertTicketItem() = default;
 
     void update() override {
-
-        if (getDaysRemaining() <= 0)
-        {
+        if (getDaysRemaining() <= 0) {
             setToMinimumQuality();
-        }
-        else
-        {
+        } else {
             int quality_increment = getQualityIncrementForConcertPass(getDaysRemaining());
             incrementQualityBy(quality_increment);
         }
@@ -23,7 +20,7 @@ public:
         decreaseDaysRemaining();
     };
 
-private:
+   private:
     int getQualityIncrementForConcertPass(int days_remaining) const {
         int quality_increment;
         if (days_remaining > 10)
@@ -36,7 +33,4 @@ private:
     };
 };
 
-
-
-
-#endif //CPP_ConcertTicketItem_H
+#endif  // CPP_ConcertTicketItem_H

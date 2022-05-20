@@ -6,13 +6,14 @@
 class IItem;
 using ItemPointer = std::shared_ptr<IItem>;
 
-class IItem
-{
-  public:
+class IItem {
+   public:
     IItem(const std::string& name, int days_remaining, int quality)
-        : name_{name}, days_remaining_{days_remaining}, quality_{quality}, max_quality_{50}, min_quality_{0}
-    {
-    }
+        : name_{name},
+          days_remaining_{days_remaining},
+          quality_{quality},
+          max_quality_{50},
+          min_quality_{0} {}
 
     virtual ~IItem() = default;
 
@@ -22,22 +23,20 @@ class IItem
 
     virtual void update() = 0;
 
-  protected:
+   protected:
     void decreaseDaysRemaining() { days_remaining_ -= 1; }
 
-    void decreaseQualityBy(const int quality_decrement)
-    {
+    void decreaseQualityBy(const int quality_decrement) {
         quality_ = std::max(quality_ - quality_decrement, min_quality_);
     }
 
-    void incrementQualityBy(const int quality_increment)
-    {
+    void incrementQualityBy(const int quality_increment) {
         quality_ = std::min(quality_ + quality_increment, max_quality_);
     }
 
     void setToMinimumQuality() { quality_ = min_quality_; }
 
-  private:
+   private:
     std::string name_;
     int days_remaining_;
     int quality_;

@@ -1,23 +1,22 @@
+#include <gtest/gtest.h>
+
 #include <fstream>
 #include <streambuf>
-#include <gtest/gtest.h>
 
 #include "CheeseItem.h"
 #include "ConcertTicketItem.h"
-#include "WhiteBear.h"
-#include "NormalItem.h"
 #include "LegolasItem.h"
+#include "NormalItem.h"
+#include "WhiteBear.h"
 
-std::string readGroundtruth(const std::string& filename)
-{
+std::string readGroundtruth(const std::string& filename) {
     std::ifstream file{filename, std::ifstream::in};
     std::stringstream s;
     s << file.rdbuf();
     return s.str();
 };
 
-TEST(WhiteBearCharacterizationTest, Foo)
-{
+TEST(WhiteBearCharacterizationTest, Foo) {
     WhiteBear app;
 
     app.addItem(ItemPointer{new NormalItem("+7 Yellow Vest", 10, 20)});
@@ -27,8 +26,7 @@ TEST(WhiteBearCharacterizationTest, Foo)
 
     std::stringstream output;
 
-    for (int day = 0; day < 5; ++day)
-    {
+    for (int day = 0; day < 5; ++day) {
         output << "Day is " << day << std::endl;
         app.updateQuality();
         app.printItems(output);

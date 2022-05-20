@@ -3,11 +3,11 @@
 using namespace std;
 
 int main() {
-  WhiteBear app;
+    WhiteBear app;
 
-  app.addItem(Item("+7 Yellow Vest", 10, 20));
+    app.addItem(Item("+7 Yellow Vest", 10, 20));
 
-  cout << "HAHAHA!" << endl;
-  app.updateQuality();
-  app.printItems();
+    cout << "HAHAHA!" << endl;
+    app.updateQuality();
+    app.printItems();
 }
