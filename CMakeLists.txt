@@ -29,8 +29,11 @@ set(WHITE_BEAR_SOURCE_FILES
 
 set(WHITE_BEAR_UNIT_TESTS_SOURCE_FILES
     ${WHITE_BEAR_SOURCE_FILES}
-    # tests/WhiteBearCharacterizationTests.cc
     tests/WhiteBearUnitTests.cc)
+
+set(WHITE_BEAR_CHARACHTERIZATION_TESTS_SOURCE_FILES
+    ${WHITE_BEAR_SOURCE_FILES}
+    tests/WhiteBearCharacterizationTests.cc)
 
 set(WHITE_BEAR_MAIN_SOURCE_FILES
     ${WHITE_BEAR_SOURCE_FILES}
@@ -40,11 +43,21 @@ set(WHITE_BEAR_MAIN_SOURCE_FILES
 
 add_executable(WhiteBear ${WHITE_BEAR_MAIN_SOURCE_FILES})
 
-# Add the test executable
+# Testing
 
 enable_testing()
 include(GoogleTest)
+
+# Unit tests
+
 add_executable(WhiteBearUnitTests ${WHITE_BEAR_UNIT_TESTS_SOURCE_FILES})
 target_include_directories(WhiteBearUnitTests PRIVATE src/)
 target_link_libraries(WhiteBearUnitTests gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
 gtest_discover_tests(WhiteBearUnitTests)
+
+# Charachterization tests
+
+add_executable(WhiteBearCharacterizationTests ${WHITE_BEAR_CHARACHTERIZATION_TESTS_SOURCE_FILES})
+target_include_directories(WhiteBearCharacterizationTests PRIVATE src/)
+target_link_libraries(WhiteBearCharacterizationTests gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
+gtest_discover_tests(WhiteBearCharacterizationTests)
