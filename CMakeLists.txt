@@ -1,64 +1,48 @@
-cmake_minimum_required(VERSION 2.8.4)
+# Project meta-data
+cmake_minimum_required(VERSION 3.0.0)
 project(cpp)
 
+# Force C++17
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# Add compiler options
+# add_compile_options(-Wall -Wextra -Werror)
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    message("Release build")
+    add_compile_options(-O3)
+else()
+    message("Debug build")
+    add_compile_options(-ggdb)
+endif()
+
+# Ensure we have a threading library
+
 # CMake FindThreads is broken until 3.1
-#find_package(Threads REQUIRED)
 set(CMAKE_THREAD_LIBS_INIT pthread)
 
-set(CMAKE_CXX_STANDARD 17)
-
-
-set(EXT_PROJECTS_DIR ${PROJECT_SOURCE_DIR}/ext)
-set(gtest_SOURCE_DIR ${EXT_PROJECTS_DIR}/googletest/googletest)
-
-
-enable_testing()
-include_directories(${gtest_SOURCE_DIR}/include)
-
+# Source files
 
 set(WHITE_BEAR_SOURCE_FILES
-        WhiteBear.cc
-        WhiteBear.h
-		#IItem.h
-        #NormalItem.h
-        #CheeseItem.h
-        #LegolasItem.h
-        #ConcertTicketItem.h
-        )
+    WhiteBear.cc
+    WhiteBear.h)
 
 set(WHITE_BEAR_UNIT_TESTS_SOURCE_FILES
-        ${WHITE_BEAR_SOURCE_FILES}
-        WhiteBearUnitTests.cc)
+    ${WHITE_BEAR_SOURCE_FILES}
+    WhiteBearUnitTests.cc)
 
-#set(SOURCE_FILES
-#        ${WHITE_BEAR_SOURCE_FILES}
-#        ${WHITE_BEAR_TEXT_TESTS_SOURCE_FILES})
+set(WHITE_BEAR_MAIN_SOURCE_FILES
+    ${WHITE_BEAR_SOURCE_FILES}
+    WhiteBearMain.cc)
 
-add_subdirectory(${gtest_SOURCE_DIR} ${gtest_SOURCE_DIR}/bin EXCLUDE_FROM_ALL)
-add_executable(WhiteBear ${WHITE_BEAR_SOURCE_FILES} WhiteBearMain.cc)
+# Add the main executable
 
-#target_link_libraries(WhiteBear gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
-#target_link_libraries(WhiteBear gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
-#target_link_libraries(WhiteBear gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
-#target_link_libraries(WhiteBear gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
-#target_link_libraries(WhiteBear gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
-#target_link_libraries(WhiteBear gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
-#target_link_libraries(WhiteBear gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
+add_executable(WhiteBear ${WHITE_BEAR_MAIN_SOURCE_FILES})
 
+# Add the test executable
+
+enable_testing()
+include(GoogleTest)
 add_executable(WhiteBearUnitTests ${WHITE_BEAR_UNIT_TESTS_SOURCE_FILES})
 target_link_libraries(WhiteBearUnitTests gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
-
-
-
-#set(WHITE_BEAR_CHARACTERIZATION_TESTS_SOURCE_FILES
-#        ${WHITE_BEAR_SOURCE_FILES}
-#        WhiteBearCharacterizationTests.cc)
-
-#set(SOURCE_FILES
-#        ${ABC_SOURCE_FILES}
-#        ${CDE_TEXT_TESTS_SOURCE_FILES})
-
-
-
-#add_executable(WhiteBearCharacterizationTests ${WHITE_BEAR_CHARACTERIZATION_TESTS_SOURCE_FILES})
-#target_link_libraries(WhiteBearCharacterizationTests gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
+gtest_discover_tests(WhiteBearUnitTests)
